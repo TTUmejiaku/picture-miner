@@ -1,68 +1,50 @@
-import React, { useState } from 'react';
-import logo from '../../assets/Minegram.svg';
-import { NavLink } from 'react-router-dom';
-import {
-  Element3,
-  Gallery,
-  TextalignJustifycenter,
-  Triangle,
-} from 'iconsax-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import MinegramLogo from '../../assets/Minegram.svg';
+import { Element3, Gallery, Triangle } from 'iconsax-react';
 
-const Sidebar = () => {
-  const [openSidebar, setOpenSidebar] = useState(false);
+function DashboardSidebar({ showSidebar, toggleSidebar }) {
   return (
-    <>
-      <div className="menu__sidebar" onClick={() => setOpenSidebar(true)}>
-        <TextalignJustifycenter size="24" color="#292D32" />
+    <aside
+      className={`w-60 pt-8 h-screen fixed inset-y-0 left-0 z-10 -translate-x-full lg:-translate-x-0 bg-white transition-transform duration-1000 ease-out ${
+        showSidebar && 'translate-x-0'
+      }`}
+    >
+      <img src={MinegramLogo} alt="" className="pl-6" onClick={toggleSidebar} />
+      <div className="mt-14 space-y-10">
+        <Link
+          to="/account-setup"
+          className="dashboardSidebarLinks"
+          onClick={toggleSidebar}
+        >
+          <div className="pl-6">
+            <Element3 />
+          </div>
+          <h3 className="text-small">Dashboard</h3>
+        </Link>
+        <Link
+          to="/gallery"
+          className="dashboardSidebarLinks"
+          onClick={toggleSidebar}
+        >
+          <div className="pl-6">
+            <Gallery />
+          </div>
+          <h3>Images</h3>
+        </Link>
+        <Link
+          to="/billing"
+          className="dashboardSidebarLinks"
+          onClick={toggleSidebar}
+        >
+          <div className="pl-6">
+            <Triangle />
+          </div>
+          <h3>Billing</h3>
+        </Link>
       </div>
-      <div
-        className="overlay"
-        onClick={() => setOpenSidebar(false)}
-        data-visible={openSidebar}
-      ></div>
-
-      <aside className="sidebar" data-visible={openSidebar}>
-        <div className="logo">
-          <img src={logo} alt="" />
-        </div>
-        <nav>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? 'sidebar__links--active sidebar__links'
-                : 'sidebar__links '
-            }
-            to={'/dashboard'}
-          >
-            <Element3 size="16" color="#1d1d1d" />
-            Dashboard
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? 'sidebar__links--active sidebar__links'
-                : 'sidebar__links'
-            }
-            to={'/images'}
-          >
-            <Gallery size="16" color="#1d1d1d" />
-            Images
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? 'sidebar__links--active sidebar__links'
-                : 'sidebar__links'
-            }
-            to={'/billing'}
-          >
-            <Triangle size="16" color="#1d1d1d" />
-            Billing
-          </NavLink>
-        </nav>
-      </aside>
-    </>
+    </aside>
   );
-};
+}
 
-export default Sidebar;
+export default DashboardSidebar;

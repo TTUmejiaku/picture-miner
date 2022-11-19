@@ -45,7 +45,7 @@ code {
   [multiple],
   textarea,
   select {
-    @apply border border-solid border-x-inputGray text-inputGray py-3 px-4 rounded-xl focus:border-lightOrange focus:ring-mainOrange placeholder:text-inputGray placeholder:text-small;
+    @apply border border-solid border-x-inputGray text-inputGray py-3 px-4 rounded-xl focus:border-lightOrange focus:ring-mainOrange placeholder:text-inputGray placeholder:text-xSmall;
   }
 
   [type='checkbox'],
@@ -69,6 +69,6 @@ code {
   }
 
   .form_label {
-    @apply text-small mb-2;
+    @apply text-xSmall mb-2;
   }
 }

@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import DashboardNavbar from './DashboardNavbar';
-import Sidebar from './Sidebar';
+import DashboardSidebar from './Sidebar';
+import { TextalignJustifycenter } from 'iconsax-react';
 
-const DashboardLayout = () => {
+function DashboardLayout() {
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar((prevState) => !prevState);
+  };
   return (
-    <div className="dashboard_layout">
-      <Sidebar />
-      <div className="dashboard_pages">
-        <DashboardNavbar />
+    <div>
+      {showSidebar && (
+        <div
+          className="bg-modalGray lg:bg-transparent z-[5] fixed inset-0 w-full"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+      <div className="container">
+        <div className="pt-5 lg:hidden" onClick={toggleSidebar}>
+          <TextalignJustifycenter />
+        </div>
+
+        <DashboardSidebar
+          toggleSidebar={toggleSidebar}
+          showSidebar={showSidebar}
+        />
         <Outlet />
       </div>
     </div>
   );
-};
+}
 
 export default DashboardLayout;

@@ -54,7 +54,6 @@ function AccountSettings() {
   useEffect(() => {
     if (Object.keys(errorMessages).length === 0 && isSubmitting) {
       setSuccessMessage('Message sent successfully');
-      console.log('first');
       setTimeout(() => {
         setFormValues(initialFormValues);
         setSuccessMessage('');
@@ -76,144 +75,142 @@ function AccountSettings() {
 
   return (
     <div className="mt-12 mb-28 -z-0">
-      <div className="container">
-        <section className="relative">
-          <h1 className="text-large">Account settings</h1>
-          {successMessage && (
-            <div className="w-full rounded-md bg-green-600 text-white mt-10 px-4 py-4 absolute top-1/4 left-1/4 -translate-x-1/4 -translate-y-1/4 text-center flex items-center justify-center space-x-4">
-              <div className="rounded-full bg-white h-5 w-5 flex items-center justify-center ">
-                <AiOutlineExclamation className="text-green-700 text-small" />
-              </div>
-              <p>{successMessage}</p>
+      <section className="relative">
+        <h1 className="text-large">Account settings</h1>
+        {successMessage && (
+          <div className="w-full rounded-md bg-green-600 text-white mt-10 px-4 py-4 absolute top-1/4 left-1/4 -translate-x-1/4 -translate-y-1/4 text-center flex items-center justify-center space-x-4">
+            <div className="rounded-full bg-white h-5 w-5 flex items-center justify-center ">
+              <AiOutlineExclamation className="text-green-700 text-small" />
             </div>
-          )}
-          <form onSubmit={handleSubmit}>
-            <div className="md:flex md:flex-row md:space-x-4 md:justify-between">
-              <FormInput
-                name="firstName"
-                label="First name"
-                type="text"
-                onchange={handleChange}
-                placeholder="Your first name"
-                value={formValues.firstName}
-                labelClassName="form_label"
-                containerClassName="form_group"
-              />
-              <FormInput
-                name="lastName"
-                label="Last name"
-                type="text"
-                onchange={handleChange}
-                placeholder="Your last name"
-                value={formValues.lastName}
-                labelClassName="form_label"
-                containerClassName="form_group"
-              />
-            </div>
+            <p>{successMessage}</p>
+          </div>
+        )}
+        <form onSubmit={handleSubmit}>
+          <div className="md:flex md:flex-row md:space-x-4 md:justify-between">
             <FormInput
-              name="email"
-              label="Email address"
-              type="email"
-              onchange={handleChange}
-              placeholder="example@gmail.com"
-              value={formValues.email}
-              labelClassName="form_label"
-              containerClassName="form_group"
-            />
-            <FormInput
-              name="businessName"
-              label="Business name"
+              name="firstName"
+              label="First name"
               type="text"
               onchange={handleChange}
-              placeholder="minegram"
-              value={formValues.businessName}
+              placeholder="Your first name"
+              value={formValues.firstName}
               labelClassName="form_label"
               containerClassName="form_group"
             />
             <FormInput
-              name="currentPassword"
-              label="Current password"
-              type="password"
+              name="lastName"
+              label="Last name"
+              type="text"
               onchange={handleChange}
-              placeholder="123456"
-              value={formValues.currentPassword}
+              placeholder="Your last name"
+              value={formValues.lastName}
               labelClassName="form_label"
               containerClassName="form_group"
-              showPassword={showPassword}
-              togglePassword={togglePassword}
-              inputClassName="w-full"
-              buttonClassName="absolute bg-transparent top-2/4 right-[3%] -translate-x-[3%] -translate-y-2/4 cursor-pointer"
-              eyeIconClassName="text-large text-inputGray"
             />
-            <FormInput
-              name="newPassword"
-              label="New password"
-              type="password"
-              onchange={handleChange}
-              placeholder="Password@123"
-              value={formValues.newPassword}
-              inputClassName={`w-full ${
-                errorMessages.newPassword && 'border-red-500'
-              } ${success && 'border-green-300'}`}
-              labelClassName="form_label"
-              containerClassName="form_group"
-              showPassword={showPassword}
-              togglePassword={togglePassword}
-              buttonClassName="absolute bg-transparent top-2/4 right-[3%] -translate-x-[3%] -translate-y-2/4 cursor-pointer"
-              eyeIconClassName="text-large text-inputGray"
-            />
-            <small
-              className={`text-sm text-inputGray ${
-                errorMessages.newPassword ? 'text-red-500' : ''
+          </div>
+          <FormInput
+            name="email"
+            label="Email address"
+            type="email"
+            onchange={handleChange}
+            placeholder="example@gmail.com"
+            value={formValues.email}
+            labelClassName="form_label"
+            containerClassName="form_group"
+          />
+          <FormInput
+            name="businessName"
+            label="Business name"
+            type="text"
+            onchange={handleChange}
+            placeholder="minegram"
+            value={formValues.businessName}
+            labelClassName="form_label"
+            containerClassName="form_group"
+          />
+          <FormInput
+            name="currentPassword"
+            label="Current password"
+            type="password"
+            onchange={handleChange}
+            placeholder="123456"
+            value={formValues.currentPassword}
+            labelClassName="form_label"
+            containerClassName="form_group"
+            showPassword={showPassword}
+            togglePassword={togglePassword}
+            inputClassName="w-full"
+            buttonClassName="absolute bg-transparent top-2/4 right-[3%] -translate-x-[3%] -translate-y-2/4 cursor-pointer"
+            eyeIconClassName="text-large text-inputGray"
+          />
+          <FormInput
+            name="newPassword"
+            label="New password"
+            type="password"
+            onchange={handleChange}
+            placeholder="Password@123"
+            value={formValues.newPassword}
+            inputClassName={`w-full ${
+              errorMessages.newPassword && 'border-red-500'
+            } ${success && 'border-green-300'}`}
+            labelClassName="form_label"
+            containerClassName="form_group"
+            showPassword={showPassword}
+            togglePassword={togglePassword}
+            buttonClassName="absolute bg-transparent top-2/4 right-[3%] -translate-x-[3%] -translate-y-2/4 cursor-pointer"
+            eyeIconClassName="text-large text-inputGray"
+          />
+          <small
+            className={`text-sm text-inputGray ${
+              errorMessages.newPassword ? 'text-red-500' : ''
+            }`}
+          >
+            {errorMessages.newPassword}
+          </small>
+          <FormInput
+            name="confirmPassword"
+            label="Confirm password"
+            type="password"
+            onchange={handleChange}
+            placeholder="Password@123"
+            value={formValues.confirmPassword}
+            inputClassName={`w-full ${
+              errorMessages.confirmPassword && 'border-red-500'
+            } ${success && 'border-green-300'}`}
+            labelClassName="form_label"
+            containerClassName="form_group"
+            showPassword={showPassword}
+            togglePassword={togglePassword}
+            buttonClassName="absolute bg-transparent top-2/4 right-[3%] -translate-x-[3%] -translate-y-2/4 cursor-pointer"
+            eyeIconClassName="text-large text-inputGray"
+          />
+          <small
+            className={`text-sm text-inputGray ${
+              errorMessages.confirmPassword ? 'text-red-500' : ''
+            }`}
+          >
+            {errorMessages.confirmPassword}
+          </small>
+          <div className="mt-8 space-x-5 flex items-center justify-end md:justify-start">
+            <Button
+              text="cancel"
+              onclick={cancelAccountSettingsUpdate}
+              className={`py-2 px-8 rounded-lg text-normal border border-[#686868] border-solid cursor-pointer ${
+                success && 'border-mainOrange text-mainOrange'
               }`}
-            >
-              {errorMessages.newPassword}
-            </small>
-            <FormInput
-              name="confirmPassword"
-              label="Confirm password"
-              type="password"
-              onchange={handleChange}
-              placeholder="Password@123"
-              value={formValues.confirmPassword}
-              inputClassName={`w-full ${
-                errorMessages.confirmPassword && 'border-red-500'
-              } ${success && 'border-green-300'}`}
-              labelClassName="form_label"
-              containerClassName="form_group"
-              showPassword={showPassword}
-              togglePassword={togglePassword}
-              buttonClassName="absolute bg-transparent top-2/4 right-[3%] -translate-x-[3%] -translate-y-2/4 cursor-pointer"
-              eyeIconClassName="text-large text-inputGray"
+              disabled={isSubmitting}
             />
-            <small
-              className={`text-sm text-inputGray ${
-                errorMessages.confirmPassword ? 'text-red-500' : ''
+            <Button
+              text="save"
+              className={`py-2 px-8 rounded-lg text-normal bg-[#D2D2D2] cursor-pointer ${
+                success && 'bg-mainOrange text-white'
               }`}
-            >
-              {errorMessages.confirmPassword}
-            </small>
-            <div className="mt-8 space-x-5 flex items-center justify-end md:justify-start">
-              <Button
-                text="cancel"
-                onclick={cancelAccountSettingsUpdate}
-                className={`py-2 px-8 rounded-lg text-normal border border-[#686868] border-solid cursor-pointer ${
-                  success && 'border-mainOrange text-mainOrange'
-                }`}
-                disabled={isSubmitting}
-              />
-              <Button
-                text="save"
-                className={`py-2 px-8 rounded-lg text-normal bg-[#D2D2D2] cursor-pointer ${
-                  success && 'bg-mainOrange text-white'
-                }`}
-                type="submit"
-                disabled={isSubmitting}
-              />
-            </div>
-          </form>
-        </section>
-      </div>
+              type="submit"
+              disabled={isSubmitting}
+            />
+          </div>
+        </form>
+      </section>
     </div>
   );
 }
