@@ -1,0 +1,59 @@
+.show {
+  transform: translateY(0%);
+  opacity: 1;
+  transition: all 350ms ease-out;
+  z-index: 10;
+}
+.hide {
+  transform: translateY(-250%);
+  opacity: 0;
+}
+.tablist {
+  @include Flex;
+  gap: 5px;
+  padding: 8px;
+  background: rgba(255, 226, 204, 0.5);
+  border: 1px solid #ffe2cc;
+  border-radius: 8px;
+  max-width: 344px;
+  margin-bottom: 20px;
+  .tab {
+    padding: 7px 25px;
+  }
+  .active__tab {
+    background-color: #ff6c00;
+    cursor: pointer;
+    color: #fff;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .active__tab:hover {
+    background-color: #fff;
+    color: #ff6c00;
+  }
+
+  .tab:hover {
+    cursor: pointer;
+    color: #686868;
+  }
+}
+.completed {
+  color: #308c63 !important;
+}
+.ongoing {
+  color: #f7cb73;
+  pointer-events: none;
+}
+.youtube__player {
+  width: min(1120px, 80vw);
+  height: 480px;
+}
+.youtube_player {
+  background-color: #fff;
+  box-shadow: 0px 3px 5px rgba(255, 226, 204, 0.5);
+  width: min(1120px, 80vw);
+  height: 480px;
+  z-index: 1;
+}

@@ -1,0 +1,213 @@
+.dashboard_layout {
+  min-height: 100vh;
+  display: flex;
+  height: 100%;
+
+  .menu__sidebar {
+    display: none;
+  }
+  .dashboard_pages {
+    padding: 20px 0;
+    width: 100%;
+
+    @media (min-width: 550px) {
+      padding: 20px 80px 0;
+    }
+  }
+  .navbar {
+    @include Flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 1.1rem;
+    position: relative;
+
+    @media (min-width: 800px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .icon__ri {
+      position: absolute;
+      left: 20px;
+      top: 12px;
+    }
+
+    .filt {
+      display: none;
+      @media (max-width: 550px) {
+        display: none;
+      }
+    }
+    .form__input {
+      width: 670px;
+      height: 48px;
+
+      background: #ffffff;
+      border: 1px solid #d2d2d2;
+      border-radius: 4px;
+      input {
+        border-radius: 4px;
+        width: 100%;
+        height: 100%;
+        border: none;
+        text-indent: 16px;
+        padding-left: 40px;
+      }
+    }
+    .user {
+      margin-bottom: 16px;
+      @include Flex;
+      gap: 8px;
+
+      .user__grid {
+        display: flex;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        column-gap: 8px;
+        align-items: center;
+        place-items: center;
+        justify-content: center;
+
+        .user_image {
+          font-size: 20px;
+        }
+
+        .user_number {
+          font-size: 10px;
+        }
+      }
+      .drop__down {
+        position: relative;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        cursor: pointer;
+        .hide {
+          transform: translateY(-150%);
+          opacity: 0;
+        }
+        .svg {
+          width: 30px;
+        }
+        &:hover .hide {
+          cursor: pointer;
+          transform: translateY(10px);
+          opacity: 1;
+        }
+
+        .account {
+          position: absolute;
+          width: 221px;
+          height: 200px;
+          right: -38px;
+          top: 8px;
+          z-index: 1;
+          background: #fbfbfb;
+          box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+            0px 1px 2px rgba(16, 24, 40, 0.06);
+          border-radius: 4px;
+          padding: 16px;
+          p {
+            padding: 7px;
+            margin-bottom: 16px;
+            &:hover {
+              background: rgba(255, 226, 204, 0.5);
+            }
+          }
+        }
+      }
+
+      .user_image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        grid-row: 1 / span 2;
+        background: #1d1d1d;
+        @include Flex;
+        justify-content: center;
+        color: #fff;
+      }
+    }
+    @media (max-width: 500px) {
+      .form_input {
+        width: 197px;
+      }
+    }
+  }
+  @media (max-width: 830px) {
+    .menu__sidebar {
+      position: absolute;
+      display: flex;
+      left: 32px;
+      top: 24px;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(34, 34, 34, 0.25);
+      min-width: 100%;
+      z-index: 4;
+    }
+    .overlay[data-visible='false'] {
+      display: none;
+    }
+    .navbar {
+      .icon__ri {
+        left: 25px;
+      }
+      margin-left: 40px;
+      justify-content: flex-end;
+      gap: 40px;
+      margin-bottom: 16px;
+      .form__input {
+        width: 287px;
+      }
+
+      @media (max-width: 550px) {
+        gap: 10px;
+        .form__input {
+          width: 197px !important;
+        }
+      }
+    }
+    .dashboard_pages {
+      padding-inline: 24px;
+    }
+  }
+  @media (max-width: 1200px) {
+    .navbar {
+      position: relative;
+      .form__input {
+        width: 360px;
+      }
+    }
+    // .dashboard_pages {
+    //   padding-inline: 38px;
+    // }
+  }
+  @media (max-width: 550px) {
+    // .dashboard_pages {
+    //   padding-inline: 16px;
+    // }
+
+    .navbar {
+      .user {
+        flex-direction: column;
+        gap: 0;
+        justify-content: center;
+        align-items: center;
+        .svg {
+          display: none;
+        }
+        .user_image {
+          margin: 0;
+        }
+      }
+      .icon__ri {
+        left: 10px;
+      }
+    }
+  }
+}
